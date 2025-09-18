@@ -13,7 +13,6 @@ Basically pl/sql is an block structure programming language.
 ======================
 
   in declare section of pl/sql block by using following syntax
-
 syntax:-
 =======
 variablename datatype(size);
