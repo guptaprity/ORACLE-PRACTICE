@@ -101,9 +101,7 @@ from tablename
 where condition;
 
  This clause is used in executable section of the pl/sql block.
-
-
-  ## Summary
+ ## Summary
 
 PL/SQL allows combining SQL with procedural features.
 
