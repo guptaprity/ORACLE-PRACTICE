@@ -111,3 +111,50 @@ BEGIN → Executable logic.
 DBMS_OUTPUT.PUT_LINE → Display output.
 
 SELECT ... INTO → Fetch values from table into variables. 
+
+
+variable attributes(%type,%rowtype):-
+====================================
+
+   pl/sql having two types of variable attributes
+1)column level attributes
+2)row level attributes
+
+1)column level attributes
+
+syntax:-
+========
+variable tablename.columnname%type;
+
+2)row level attributes
+
+syntax:-
+========
+variablename tablename%rowtype
+
+
+EG:-
+flowchart TD
+
+subgraph EMP_Table [EMP Table Row]
+    A1[empno = 7902]
+    A2[ename = FORD]
+    A3[job = ANALYST]
+    A4[mgr = 7566]
+    A5[hiredate = 03-DEC-81]
+    A6[sal = 4900]
+    A7[comm = NULL]
+    A8[deptno = 20]
+end
+
+subgraph Variable [Variable i EMP%ROWTYPE]
+    V[i]
+end
+
+V -->|.ename| A2
+V -->|.hiredate| A5
+V -->|.sal| A6
+
+
+
+
