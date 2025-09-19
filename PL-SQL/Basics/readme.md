@@ -133,7 +133,7 @@ syntax:-
 variablename tablename%rowtype
 
 
-EG:-
+## EG:-
 flowchart TD
 
 subgraph EMP_Table [EMP Table Row]
