@@ -133,28 +133,6 @@ syntax:-
 variablename tablename%rowtype
 
 
-## EG:-
-flowchart TD
-
-subgraph EMP_Table [EMP Table Row]
-    A1[empno = 7902]
-    A2[ename = FORD]
-    A3[job = ANALYST]
-    A4[mgr = 7566]
-    A5[hiredate = 03-DEC-81]
-    A6[sal = 4900]
-    A7[comm = NULL]
-    A8[deptno = 20]
-end
-
-subgraph Variable [Variable i EMP%ROWTYPE]
-    V[i]
-end
-
-V -->|.ename| A2
-V -->|.hiredate| A5
-V -->|.sal| A6
-
 
 
 
