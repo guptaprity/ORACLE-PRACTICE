@@ -263,7 +263,6 @@ WHERE e.sal > (
     WHERE deptno = e.deptno
 );
 
-
 --13 Create following COURSE10, STUDENT10 tables with given rules? 
 
 -- COURSE10 table
