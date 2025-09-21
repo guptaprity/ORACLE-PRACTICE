@@ -154,4 +154,137 @@ SQL> CREATE TABLE student10 (
   7  );
 
 Table created.
-     
+
+
+  --1. Write an SQL query to generate a report from EMP table showing (2M)
+-- Department Number
+-- Number of Employees
+--Total Salary
+-- Average Salary
+--• The result should be descending order of deptno
+SELECT deptno,
+       COUNT(*) AS num_employees,
+       SUM(sal) AS total_salary,
+       AVG(sal) AS average_salary
+FROM emp
+GROUP BY deptno
+ORDER BY deptno DESC;
+
+--2. Write a query to display the state wise gender wise no of employees from the
+--following PERSONS table? (1M)
+--EMPID ENAME GENDER STATE
+--------------- -------------------- -------------- -------------
+--1 SUBBARAO M AP
+--2 KAVYA F TS
+--3 KIRAN M TS
+--4 GOWTHAM M AP
+--5 PREETI F AP
+--6 SURYA M AP
+--7 ANUSHKA F AP
+--8 SHREYAS M TS
+SELECT state,
+       gender,
+       COUNT(*) AS num_employees
+FROM persons
+GROUP BY state, gender;
+
+--3. Find the number of employees in each department, but only display departments
+--Having more than 3 employees from EMP table.
+
+
+SELECT deptno,
+       COUNT(*) AS num_employees
+FROM emp
+GROUP BY deptno
+HAVING COUNT(*) > 3;
+
+--4. Write a query to display duplicate records from the following EMP111 table ?
+SELECT empno, ename
+FROM emp111
+GROUP BY empno, ename
+HAVING COUNT(*) > 1;
+
+--5 Write a query to display employees along with their department names from EMPLOYEES, DEPPARTMENTS tables?
+SELECT e.empno, e.ename, d.dname
+FROM employees e
+JOIN departments d
+ON e.deptno = d.deptno;
+
+--6 Retrieve all employees and their department names, including employees who are not assigned to any department from EMPLOYEES, DEPPARTMENTS tables?
+SELECT e.empno, e.ename, d.dname
+FROM employees e
+LEFT JOIN departments d
+ON e.deptno = d.deptno;
+
+
+--7 List all departments and their employees. Include departments that have no employees from EMPLOYEES, DEPPARTMENTS tables.
+SELECT e.empno, e.ename, d.dname
+FROM departments d
+LEFT JOIN employees e
+ON e.deptno = d.deptno;
+
+--8 Write a query to display the employee names and their manager names from EMP table by using SELF join .
+SELECT e.ename AS employee,
+       m.ename AS manager
+FROM emp e
+JOIN emp m
+ON e.mgr = m.empno;
+
+--9  Write a query to display the employees who are working in SMITH department number from EMP table?
+SELECT ename
+FROM emp
+WHERE deptno = (SELECT deptno FROM emp WHERE ename = 'SMITH');
+
+-- Write a query to display the employee records who are earning more salary than the BLAKE salary? 
+
+SELECT *
+FROM emp
+WHERE sal > (SELECT sal FROM emp WHERE ename = 'BLAKE');
+
+--10 Write a query to display 2nd highest salary employee from EMP table by using dense_rank() analytical function?
+
+
+SELECT ename, sal
+FROM (
+    SELECT ename, sal, DENSE_RANK() OVER (ORDER BY sal DESC) AS rnk
+    FROM emp
+) 
+WHERE rnk = 2;
+
+
+--12 .  Write a query to display employees who are getting more salary then the average salary of their departments from EMP table by using corelated subquery?
+
+
+SELECT e.empno, e.ename, e.sal, e.deptno
+FROM emp e
+WHERE e.sal > (
+    SELECT AVG(sal)
+    FROM emp
+    WHERE deptno = e.deptno
+);
+
+
+--13 Create following COURSE10, STUDENT10 tables with given rules? 
+
+
+
+-- COURSE10 table
+CREATE TABLE course10 (
+    cid     INT PRIMARY KEY,          
+    cname   VARCHAR(50) NOT NULL
+);
+
+-- STUDENT10 table
+CREATE TABLE student10 (
+    sid     INT PRIMARY KEY,          
+    sname   VARCHAR(50) NOT NULL,
+    gender  CHAR(1) CHECK (gender IN ('M', 'F')),
+    fee     NUMBER DEFAULT 30000,
+    cid     INT,
+    CONSTRAINT fk_course FOREIGN KEY (cid)
+        REFERENCES course10(cid)
+);
+
+
+
+  
