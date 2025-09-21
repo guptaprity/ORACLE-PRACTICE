@@ -9,7 +9,6 @@
 
 --MAILID       Must be unique
 
-
 CREATE TABLE student123(
   2  SID NUMBER(4) PRIMARY KEY,
   3  SNAME VARCHAR2(20) NOT NULL,
