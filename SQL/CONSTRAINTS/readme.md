@@ -13,7 +13,6 @@ table columns.
 
  Oracle having following types of constraints.
 These are
-
 1. Not null
 2. Unique
 3. Primary key
